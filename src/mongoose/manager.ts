@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import { glob } from "glob";
 import path from "path";
-import { fileURLToPath } from "url";
 
 // Map to store loaded Mongoose models
 export const models: Map<string, mongoose.Model<any>> = new Map();

@@ -55,21 +55,20 @@ export class FindTool extends BaseTool<FindParams> {
   };
 
   async execute(params: FindParams): Promise<ToolResponse> {
+    const collection = this.validateCollection(params.collection);
+    const filter = params.filter || {};
+    const projection = params.projection || {};
+    const options: Record<string, unknown> = {};
+    const model = getModelForCollection(collection);
+
+    if (params.limit !== undefined) options.limit = params.limit;
+    if (params.skip !== undefined) options.skip = params.skip;
+    if (params.sort !== undefined) options.sort = params.sort;
+
+    let results: unknown[] = [];
     try {
-      const collection = this.validateCollection(params.collection);
-      const filter = params.filter || {};
-      const projection = params.projection || {};
-      const options: Record<string, unknown> = {};
-
-      if (params.limit !== undefined) options.limit = params.limit;
-      if (params.skip !== undefined) options.skip = params.skip;
-      if (params.sort !== undefined) options.sort = params.sort;
-
-      let results: unknown[] = [];
-
       // Check if we have a schema for this collection
       if (hasSchemaForCollection(collection)) {
-        const model = getModelForCollection(collection);
         console.error(`Using Mongoose model for collection: ${collection}`);
         
         // Check if model exists before using it
@@ -130,7 +129,16 @@ export class FindTool extends BaseTool<FindParams> {
         isError: false,
       };
     } catch (error) {
-      return this.handleError(error);
+      return this.handleError(error, {
+        collection: params.collection,
+        filter: params.filter || {},
+        projection: params.projection || {},
+        sort: params.sort || {},
+        skip: params.skip || 0,
+        limit: params.limit || 0,
+        collectionName: model?.collection.name,
+        dbName: model?.collection.dbName,
+      });
     }
   }
 }

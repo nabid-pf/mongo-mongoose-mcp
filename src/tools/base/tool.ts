@@ -4,6 +4,7 @@ export interface ToolResponse {
   content: {
     type: "text";
     text: string;
+    params?: Record<string, string>;
   }[];
   isError: boolean;
   _meta?: Record<string, unknown>;
@@ -44,12 +45,13 @@ export abstract class BaseTool<T extends ToolParams = ToolParams> {
     return value as Record<string, unknown>;
   }
 
-  protected handleError(error: unknown): ToolResponse {
+  protected handleError(error: unknown, params?: Record<string, any>): ToolResponse {
     return {
       content: [
         {
           type: "text",
           text: error instanceof Error ? error.message : String(error),
+          params: params || {},
         },
       ],
       isError: true,
