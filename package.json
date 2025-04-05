@@ -1,6 +1,6 @@
 {
   "name": "mongo-mongoose-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MongoDB MCP server with optional Mongoose schema support",
   "main": "dist/index.js",
   "type": "module",
