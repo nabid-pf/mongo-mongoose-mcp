@@ -6,6 +6,7 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { config } from "dotenv";
+import path from "path";
 import { connectToMongoDB, closeMongoDB } from "./mongodb/client.js";
 import { connectToMongoose, closeMongoose } from "./mongoose/manager.js";
 import { ToolRegistry } from "./tools/registry.js";
@@ -15,8 +16,22 @@ config();
 
 // Parse command line arguments
 const args = process.argv.slice(2);
-const databaseUrl = args[0] || process.env.MONGODB_URI || "mongodb://localhost:27017/test";
-const schemaPath = args[1] || process.env.SCHEMA_PATH;
+
+// Get database URL from args or environment
+const databaseUrl = args[0] || process.env.MONGODB_URI || "mongodb://localhost:27017/mcp-database";
+
+// Get schema path from args or environment
+let schemaPath = args[1] || process.env.SCHEMA_PATH;
+
+// If schema path is provided, ensure it's an absolute path
+if (schemaPath) {
+  schemaPath = path.isAbsolute(schemaPath) 
+    ? schemaPath 
+    : path.resolve(process.cwd(), schemaPath);
+  
+  console.error(`Schema path (absolute): ${schemaPath}`);
+}
+
 
 // Initialize tools
 const toolRegistry = new ToolRegistry();
