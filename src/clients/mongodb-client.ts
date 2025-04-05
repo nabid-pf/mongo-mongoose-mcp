@@ -3,6 +3,7 @@ import { config } from "dotenv";
 import mongoose from "mongoose";
 import { glob } from "glob";
 
+
 config();
 
 class MongoDBClient {
@@ -54,6 +55,7 @@ class MongoDBClient {
 
   private async loadSchemas(schemaPath: string): Promise<void> {
     try {
+      // Use the absolute path directly
       const schemaFiles = await glob(`${schemaPath}/**/*.{js,ts}`);
       
       if (schemaFiles.length === 0) {
@@ -65,7 +67,8 @@ class MongoDBClient {
       
       for (const file of schemaFiles) {
         try {
-          const moduleImport = await import(file);
+          // Use require for npm package compatibility
+          const moduleImport = require(file);
           const schema = moduleImport.default;
           
           if (schema && schema.modelName) {
