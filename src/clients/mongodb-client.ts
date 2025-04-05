@@ -56,14 +56,10 @@ class MongoDBClient {
 
   private async loadSchemas(schemaPath: string): Promise<void> {
     try {
-      const __filename = fileURLToPath(import.meta.url);
-      const __dirname = path.dirname(__filename);
-      const absolutePath = path.resolve(__dirname, '..', '..', schemaPath);
-      
-      const schemaFiles = await glob(`${absolutePath}/**/*.{js,ts}`);
+      const schemaFiles = await glob(`${schemaPath}/**/*.{js,ts}`);
       
       if (schemaFiles.length === 0) {
-        console.error(`No schema files found in ${absolutePath}. Running in schemaless mode.`);
+        console.error(`No schema files found in ${schemaPath}. Running in schemaless mode.`);
         return;
       }
 
