@@ -1,0 +1,57 @@
+{
+  "name": "mongo-mongoose-mcp",
+  "version": "0.1.0",
+  "description": "MongoDB MCP server with optional Mongoose schema support",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "mongo-mongoose-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && shx chmod +x dist/index.js",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "lint": "eslint .",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "mongodb",
+    "mongoose",
+    "mcp",
+    "schema",
+    "database",
+    "claude",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.0",
+    "dotenv": "^16.4.1",
+    "glob": "^10.3.3",
+    "mongoose": "^8.1.1",
+    "mongodb": "^6.3.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3",
+    "shx": "^0.3.4",
+    "eslint": "^8.56.0",
+    "nodemon": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/mongo-mongoose-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/mongo-mongoose-mcp/issues"
+  },
+  "homepage": "https://github.com/yourusername/mongo-mongoose-mcp#readme"
+}
