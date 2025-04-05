@@ -88,7 +88,8 @@ npx @modelcontextprotocol/inspector node dist/index.js
 
 ### Creating Mongoose Schemas
 
-Place your Mongoose schema files in the `models` directory (or custom path specified in SCHEMA_PATH):
+Place your Mongoose schema files in the a directory and specify that path in SCHEMA_PATH var
+Make sure mongoose npm package is installed globally or within that path
 
 ```javascript
 // models/user.js
