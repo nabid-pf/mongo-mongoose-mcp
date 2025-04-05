@@ -23,7 +23,10 @@ const toolHandler = async (_args: {}, _extra: { signal: AbortSignal }) => {
       return {
         name: model.collection.name,
         hasSchema: true,
-        modelName: model.modelName
+        modelName: model.modelName,
+        schema: model.schema.obj,
+        dbName: model.collection.dbName,
+        collectionName: model.collection.name,
       };
     });
     
