@@ -7,7 +7,7 @@ An MCP (Model Context Protocol) server that enables Claude to interact with Mong
 
 ## Features
 
-- Query, insert, update, and manage MongoDB collections directly from Claude
+- Query, aggregation, insert, update, and manage MongoDB collections directly from Claude
 - Optional Mongoose schema support for data validation and hooks
 - Soft delete implementation for document safety
 - Clean separation between schema-based and schemaless operations
