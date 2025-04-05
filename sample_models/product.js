@@ -11,14 +11,7 @@ const productSchema = new mongoose.Schema({
   deletedAt: Date
 });
 
-// Add any pre/post hooks or methods if needed
-productSchema.pre('find', function() {
-  // By default, exclude deleted documents from queries
-  if (!this._conditions.includeDeleted) {
-    this.where({ isDeleted: { $ne: true } });
-  }
-});
 
-const Product = mongoose.model('Product', productSchema);
+const Product = mongoose.model('product', productSchema);
 
 export default Product;

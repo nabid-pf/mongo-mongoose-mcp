@@ -9,14 +9,6 @@ const userSchema = new mongoose.Schema({
   deletedAt: Date
 });
 
-// Add any pre/post hooks or methods if needed
-userSchema.pre('find', function() {
-  // By default, exclude deleted documents from queries
-  if (!this._conditions.includeDeleted) {
-    this.where({ isDeleted: { $ne: true } });
-  }
-});
-
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('user', userSchema);
 
 export default User;

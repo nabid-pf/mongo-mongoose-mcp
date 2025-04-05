@@ -26,7 +26,7 @@
     "claude",
     "ai"
   ],
-  "author": "",
+  "author": "Nabid Salehin <nabid@peakflo.co>",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.6.0",
