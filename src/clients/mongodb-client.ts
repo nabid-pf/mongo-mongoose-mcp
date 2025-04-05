@@ -2,8 +2,6 @@ import { MongoClient, Db } from "mongodb";
 import { config } from "dotenv";
 import mongoose from "mongoose";
 import { glob } from "glob";
-import path from "path";
-import { fileURLToPath } from "url";
 
 config();
 

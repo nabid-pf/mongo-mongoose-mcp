@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 import { glob } from "glob";
-import path from "path";
-import { fileURLToPath } from "url";
 
 // Map to store loaded Mongoose models
 export const models: Map<string, mongoose.Model<any>> = new Map();
@@ -25,14 +23,11 @@ export async function connectToMongoose(databaseUrl: string, schemaPath?: string
 
 export async function loadSchemas(schemaPath: string) {
   try {
-    const __dirname = path.dirname(fileURLToPath(import.meta.url));
-    const resolvedPath = path.resolve(__dirname, "../..", schemaPath);
-    
-    console.error(`Looking for schemas in: ${resolvedPath}`);
-    const schemaFiles = await glob(`${resolvedPath}/**/*.{js,ts}`);
+    console.error(`Looking for schemas in: ${schemaPath}`);
+    const schemaFiles = await glob(`${schemaPath}/**/*.{js,ts}`);
     
     if (schemaFiles.length === 0) {
-      console.error(`No schema files found in ${resolvedPath}. Running in schemaless mode.`);
+      console.error(`No schema files found in ${schemaPath}. Running in schemaless mode.`);
       return;
     }
 
