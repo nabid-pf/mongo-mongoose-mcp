@@ -27,25 +27,14 @@ To add the MCP server to Claude Desktop:
   "mcpServers": {
     "mongodb-mongoose": {
       "command": "npx",
-      "args": ["-y", "mongo-mongoose-mcp"]
-    }
-  }
-}
-```
-
-For custom MongoDB connection or schema path:
-
-```json
-{
-  "mcpServers": {
-    "mongodb-mongoose": {
-      "command": "npx",
       "args": [
         "-y", 
-        "mongo-mongoose-mcp", 
-        "mongodb://localhost:27017/your-database", 
-        "./models"
-      ]
+        "mongo-mongoose-mcp",
+      ],
+      "env": {
+        "MONGODB_URI": <your mongodb uri>,
+        "SCHEMA_PATH" : <path to the root folder of all your mongoose schemas>
+      }
     }
   }
 }
@@ -84,7 +73,7 @@ Once integrated with Claude Desktop, you can use natural language to interact wi
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/mongo-mongoose-mcp.git
+git clone https://github.com/nabid-pf/mongo-mongoose-mcp.git
 cd mongo-mongoose-mcp
 
 # Install dependencies
@@ -92,12 +81,6 @@ npm install
 
 # Build the project
 npm run build
-
-# Start the MCP server
-npm start
-
-# Or with custom MongoDB URI and schema path
-npm start mongodb://localhost:27017/your-database ./models
 
 # Test with the MCP inspector
 npx @modelcontextprotocol/inspector node dist/index.js

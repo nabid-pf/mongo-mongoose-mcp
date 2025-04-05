@@ -48,10 +48,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/mongo-mongoose-mcp.git"
+    "url": "git+https://github.com/nabid-pf/mongo-mongoose-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/mongo-mongoose-mcp/issues"
+    "url": "https://github.com/nabid-pf/mongo-mongoose-mcp/issues"
   },
-  "homepage": "https://github.com/yourusername/mongo-mongoose-mcp#readme"
+  "homepage": "https://github.com/nabid-pf/mongo-mongoose-mcp#readme"
 }
