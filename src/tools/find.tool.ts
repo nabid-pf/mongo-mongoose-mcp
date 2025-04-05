@@ -36,10 +36,11 @@ const toolHandler = async (
     
     // Get the collection
     const collection = db.collection(args.collection);
+    const models = client.getModels();
     
     // Check if we have a schema for this collection
     const hasSchema = client.hasSchema(args.collection);
-    const model = client.getModel(args.collection);
+    const model = models[args.collection];
     
     let results;
     

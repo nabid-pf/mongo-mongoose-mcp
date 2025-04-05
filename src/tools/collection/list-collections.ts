@@ -29,6 +29,7 @@ export class ListCollectionsTool extends BaseTool {
         collectionsWithSchemas,
         totalCollections: collections.length,
         totalCollectionsWithSchemas: collectionsWithSchemas.length,
+        models,
       };
 
       return {
