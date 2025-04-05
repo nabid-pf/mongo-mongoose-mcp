@@ -33,8 +33,8 @@ To add the MCP server to Claude Desktop:
         "mongo-mongoose-mcp",
       ],
       "env": {
-        "MONGODB_URI": <your mongodb uri>,
-        "SCHEMA_PATH" : <path to the root folder of all your mongoose schemas>
+        "MONGODB_URI": "<your mongodb uri>",
+        "SCHEMA_PATH" : "<path to the root folder of all your mongoose schemas>"
       }
     }
   }

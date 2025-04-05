@@ -3,7 +3,6 @@ import { ListCollectionsTool } from "./collection/list-collections.js";
 import { FindTool } from "./documents/find.js";
 import { InsertOneTool } from "./documents/insert-one.js";
 import { UpdateOneTool } from "./documents/update-one.js";
-import { DeleteOneTool } from "./documents/delete-one.js";
 import { CountTool } from "./documents/count.js";
 import { AggregateTool } from "./documents/aggregate.js";
 import { CreateIndexTool } from "./indexes/create-index.js";
@@ -22,7 +21,6 @@ export class ToolRegistry {
     this.registerTool(new FindTool());
     this.registerTool(new InsertOneTool());
     this.registerTool(new UpdateOneTool());
-    this.registerTool(new DeleteOneTool());
     this.registerTool(new CountTool());
     this.registerTool(new AggregateTool());
     
