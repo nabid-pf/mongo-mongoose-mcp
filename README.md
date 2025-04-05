@@ -2,6 +2,7 @@
 
 An MCP (Model Context Protocol) server that enables Claude to interact with MongoDB databases, with optional Mongoose schema support.
 
+[![npm version](https://img.shields.io/npm/v/mongo-mongoose-mcp.svg)](https://www.npmjs.com/package/mongo-mongoose-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Features
