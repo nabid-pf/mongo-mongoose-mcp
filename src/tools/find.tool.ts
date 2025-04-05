@@ -25,23 +25,22 @@ const toolHandler = async (
   }, 
   _extra: { signal: AbortSignal }
 ) => {
+  const client = MongoDBClient.getInstance();
+  const db = client.getDb();
+  
+  // Parse the JSON strings
+  const filterObj = JSON.parse(args.filter);
+  const projectionObj = JSON.parse(args.projection);
+  const sortObj = JSON.parse(args.sort);
+  
+  // Get the collection
+  const collection = db.collection(args.collection);
+  const models = client.getModels();
+  
+  // Check if we have a schema for this collection
+  const hasSchema = client.hasSchema(args.collection);
+  const model = models[args.collection];
   try {
-    const client = MongoDBClient.getInstance();
-    const db = client.getDb();
-    
-    // Parse the JSON strings
-    const filterObj = JSON.parse(args.filter);
-    const projectionObj = JSON.parse(args.projection);
-    const sortObj = JSON.parse(args.sort);
-    
-    // Get the collection
-    const collection = db.collection(args.collection);
-    const models = client.getModels();
-    
-    // Check if we have a schema for this collection
-    const hasSchema = client.hasSchema(args.collection);
-    const model = models[args.collection];
-    
     let results;
     
     // If we have a schema and the model exists, use Mongoose
@@ -83,6 +82,16 @@ const toolHandler = async (
           type: "text" as const,
           text: JSON.stringify({
             status: "error",
+            usedModel: hasSchema && model ? "Mongoose" : "MongoDB Native",
+            collection: args.collection,
+            dbName: collection.dbName,
+            collectionName: collection.collectionName,
+            hint: collection.hint,
+            filter: filterObj,
+            projection: projectionObj,
+            sort: sortObj,
+            skip: args.skip,
+            limit: args.limit,
             message: (error as Error).message,
             stack: (error as Error).stack
           }, null, 2)
