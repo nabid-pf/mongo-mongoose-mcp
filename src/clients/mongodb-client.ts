@@ -111,11 +111,13 @@ class MongoDBClient {
         try {
           console.error(`Attempting to load schema file: ${file}`);
           const moduleImport = require(file);
-          const schema = moduleImport.default;
+          const schemaObject = moduleImport.default;
+          const fileName = path.basename(file, path.extname(file));
           
-          if (schema && schema.modelName) {
-            this.models[schema.modelName.toLowerCase()] = schema;
-            console.error(`Successfully loaded schema for: ${schema.modelName}`);
+          if (schemaObject) {
+            const schema = new mongoose.Schema(schemaObject);
+            this.models[fileName.toLowerCase()] = mongoose.model(fileName, schema);
+            console.error(`Successfully loaded schema for: ${fileName}`);
           } else {
             console.error(`Schema file ${file} does not export a valid model`);
           }

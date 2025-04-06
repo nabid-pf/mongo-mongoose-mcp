@@ -34,7 +34,7 @@ To add the MCP server to Claude Desktop:
       ],
       "env": {
         "MONGODB_URI": "<your mongodb uri>",
-        "SCHEMA_PATH" : "<path to the root folder of all your mongoose schemas>"
+        "SCHEMA_PATH" : "<path to the root folder of all your mongoose schema objects>"
       }
     }
   }
@@ -89,25 +89,19 @@ npx @modelcontextprotocol/inspector node dist/index.js
 
 ### Creating Mongoose Schemas
 
-Place your Mongoose schema files in the a directory and specify that path in SCHEMA_PATH var
-Make sure mongoose npm package is installed globally or within that path
+Place your Mongoose schema object files in the a directory and specify that path in SCHEMA_PATH var
+Make sure file names reflect the collection name
 
 ```javascript
-// models/user.js
-import mongoose from 'mongoose';
-
-const userSchema = new mongoose.Schema({
+// models/users.js (for users collection)
+export default {
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   age: Number,
   createdAt: { type: Date, default: Date.now },
   isDeleted: { type: Boolean, default: false },
   deletedAt: Date
-});
-
-const User = mongoose.model('User', userSchema);
-
-export default User;
+};
 ```
 
 ## How It Works

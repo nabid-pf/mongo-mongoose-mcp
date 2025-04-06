@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
 import { glob } from "glob";
 import path from "path";
 
@@ -58,6 +58,7 @@ export async function loadSchemas(schemaPath: string) {
         // Format the file path for dynamic import
         // For files on disk, we need to use the file:// protocol
         const fileUrl = `file://${file}`;
+        const fileNameWithoutExtension = path.basename(file, path.extname(file));
         
         // Dynamically import the schema file
         const module = await import(fileUrl).catch(err => {
@@ -68,7 +69,9 @@ export async function loadSchemas(schemaPath: string) {
         if (!module) continue;
         
         // Get the model (either default export or module itself)
-        const model = module.default || module;
+        const schemaObject = module.default || module;
+        const schema = new Schema(schemaObject)
+        const model = mongoose.model(fileNameWithoutExtension, schema)
         
         // Add some debug info
         console.error(`Module loaded from ${file}:`, {
