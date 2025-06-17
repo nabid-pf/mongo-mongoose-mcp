@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/nabid-pf-mongo-mongoose-mcp-badge.png)](https://mseep.ai/app/nabid-pf-mongo-mongoose-mcp)
+
 # MongoDB Mongoose MCP
 
 An MCP (Model Context Protocol) server that enables Claude to interact with MongoDB databases, with optional Mongoose schema support.
